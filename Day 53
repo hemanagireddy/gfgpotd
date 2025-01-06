@@ -1,0 +1,20 @@
+class Solution {
+  public:
+    vector<int> sumClosest(vector<int>& arr, int target) {
+        
+        sort(arr.begin(),arr.end());
+        int p=0,e=arr.size()-1;
+        int diff=INT_MAX;
+        vector<int>ans;
+        while(p<e){
+            int pairsum=arr[p]+arr[e];
+            if(abs(target-pairsum)<diff){
+            diff=min(abs(target-pairsum),diff);
+            ans={arr[p],arr[e]};}
+            if(pairsum<target) p++;
+            else if(pairsum>target) e--;
+            else return ans;
+        }
+        return ans;
+    }
+};
