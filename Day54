@@ -1,0 +1,30 @@
+class Solution {
+  public:
+    int countPairs(vector<int> &arr, int target) {
+        
+        int p=0;
+        int e=arr.size()-1;
+        int count=0;
+        while(p<e){
+            int sum=arr[p]+arr[e];
+            if(sum>target) e--;
+            else if(sum<target) p++;
+            else{
+                int ele1=arr[p],ele2=arr[e];
+                int c1=0,c2=0;
+                while(p<=e && arr[p]==ele1){
+                    c1++;
+                    p++;
+                    
+                }
+                while(p<=e && arr[e]==ele2){
+                    c2++;
+                    e--;
+                }
+                if(ele1==ele2) count+=c1*(c1-1)/2;
+                else count+=c1*c2;
+            }
+        }
+        return count;
+    }
+};
